@@ -5,7 +5,7 @@ import { UpdateBrandDto } from './dto/update-brand.dto';
 @Injectable()
 export class BrandsService {
   create(createBrandDto: CreateBrandDto) {
-    return 'This action adds a new brand';
+    return 'This action adds a new brand ' + JSON.stringify(createBrandDto);
   }
 
   findAll() {
@@ -17,7 +17,7 @@ export class BrandsService {
   }
 
   update(id: number, updateBrandDto: UpdateBrandDto) {
-    return `This action updates a #${id} brand`;
+    return `This action updates a #${id} brand with data: ${JSON.stringify(updateBrandDto)}`;
   }
 
   remove(id: number) {
