@@ -6,6 +6,8 @@ import {
   PrimaryGeneratedColumn,
   Check,
   Index,
+  JoinColumn,
+  RelationId,
 } from 'typeorm';
 import { Model } from '../../models/entities/model.entity';
 
@@ -32,8 +34,12 @@ export class Car {
     nullable: false,
     onDelete: 'RESTRICT',
   })
-  @Index()
+  @JoinColumn({ name: 'modelo_id' })
+  @Index('IDX_car_model')
   model: Model;
+
+  @RelationId((c: Car) => c.model)
+  modelId: number;
 
   @Column({ type: 'int' })
   ano: number;

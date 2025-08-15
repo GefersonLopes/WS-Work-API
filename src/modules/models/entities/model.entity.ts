@@ -6,6 +6,8 @@ import {
   PrimaryGeneratedColumn,
   Unique,
   Index,
+  JoinColumn,
+  RelationId,
 } from 'typeorm';
 import { Brand } from '../../brands/entities/brand.entity';
 import { Car } from '../../cars/entities/car.entity';
@@ -22,7 +24,11 @@ export class Model {
     nullable: false,
     onDelete: 'RESTRICT',
   })
+  @JoinColumn({ name: 'marca_id' })
   brand: Brand;
+
+  @RelationId((m: Model) => m.brand)
+  brandId: number;
 
   @Column({ name: 'nome', type: 'varchar', length: 120 })
   nome: string;
