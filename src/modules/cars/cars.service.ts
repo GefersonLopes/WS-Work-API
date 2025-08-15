@@ -37,7 +37,7 @@ export class CarsService {
       where,
       order: { createdAt: 'DESC' },
       take: q.limit,
-      skip: (q.page - 1) * q.limit,
+      skip: (q.page - 1) * q.limit || 0,
     });
 
     const cars = items.map((car) => ({
