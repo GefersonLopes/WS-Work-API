@@ -6,10 +6,12 @@ import {
   Patch,
   Param,
   Delete,
+  Query,
 } from '@nestjs/common';
 import { ModelsService } from './models.service';
 import { CreateModelDto } from './dto/create-model.dto';
 import { UpdateModelDto } from './dto/update-model.dto';
+import { PaginationDto } from 'src/common/dto/pagination.dto';
 
 @Controller('models')
 export class ModelsController {
@@ -21,22 +23,22 @@ export class ModelsController {
   }
 
   @Get()
-  findAll() {
-    return this.modelsService.findAll();
+  findAll(@Query() paginationDto: PaginationDto) {
+    return this.modelsService.findAll(paginationDto);
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.modelsService.findOne(+id);
+  findOne(@Param('id') id: number) {
+    return this.modelsService.findOne(id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateModelDto: UpdateModelDto) {
-    return this.modelsService.update(+id, updateModelDto);
+  update(@Param('id') id: number, @Body() updateModelDto: UpdateModelDto) {
+    return this.modelsService.update(id, updateModelDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.modelsService.remove(+id);
+  remove(@Param('id') id: number) {
+    return this.modelsService.remove(id);
   }
 }
