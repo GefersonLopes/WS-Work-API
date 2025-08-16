@@ -80,3 +80,24 @@ Tecnologias: **Flask**, **SQLAlchemy**, **Flask-Migrate (Alembic)**, **Marshmall
   "cor": "Preto"
 }
 ```
+
+## Como executar? 
+
+## 📦 Pré-requisitos
+
+Antes de começar, instale:
+
+- [Docker](https://www.docker.com/products/docker-desktop)  
+- [Docker Compose](https://docs.docker.com/compose/)  
+- [Python 3.12](https://www.python.org/downloads/) _(apenas se quiser rodar fora do Docker)_
+
+---
+
+## ▶️ Como executar
+
+### 1. Clone o repositório
+
+```bash
+git clone https://github.com/GefersonLopes/WS-Work-API.git
+cd WS-Work-API
+docker compose up --build
