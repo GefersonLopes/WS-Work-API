@@ -1,0 +1,11 @@
+echo "🔍 Formatando código..."
+python -m black app
+python -m isort app
+
+echo "🔎 Rodando lint..."
+python -m flake8 app
+
+echo "🔎 Rodando mypy..."
+python -m mypy app
+
+echo "✅ Tudo certo!"
