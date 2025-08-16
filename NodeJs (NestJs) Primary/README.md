@@ -72,3 +72,26 @@ O foco principal é manter uma arquitetura limpa, testável e organizada, além 
   "num_portas": 4,
   "cor": "Preto"
 }
+```
+
+## Como executar? 
+
+## 📦 Pré-requisitos
+
+Antes de começar, instale:
+
+- [Docker](https://www.docker.com/products/docker-desktop)  
+- [Docker Compose](https://docs.docker.com/compose/)  
+- [NodeJs](https://nodejs.org/pt/) _(apenas se quiser rodar fora do Docker)_
+
+---
+
+## ▶️ Como executar
+
+### 1. Clone o repositório
+
+```bash
+git clone https://github.com/GefersonLopes/WS-Work-API.git
+cd WS-Work-API
+cd NodeJs (NestJs) Primary
+docker compose up --build
