@@ -12,12 +12,12 @@ import {
 import { Model } from '../../models/entities/model.entity';
 
 export enum Fuel {
-  GASOLINA = 'Gasolina',
-  ETANOL = 'Etanol',
+  GASOLINA = 'GASOLINA',
+  ETANOL = 'ETANOL',
   FLEX = 'FLEX',
-  DIESEL = 'Diesel',
-  HIBRIDO = 'Hibrido',
-  ELETRICO = 'Eletrico',
+  DIESEL = 'DIESEL',
+  HIBRIDO = 'HIBRIDO',
+  ELETRICO = 'ELETRICO',
 }
 
 @Entity('cars')
