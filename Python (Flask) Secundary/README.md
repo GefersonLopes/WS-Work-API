@@ -100,4 +100,6 @@ Antes de começar, instale:
 ```bash
 git clone https://github.com/GefersonLopes/WS-Work-API.git
 cd WS-Work-API
+cd Python\ \(Flask\)\ Secundary/
 docker compose up --build
+```
