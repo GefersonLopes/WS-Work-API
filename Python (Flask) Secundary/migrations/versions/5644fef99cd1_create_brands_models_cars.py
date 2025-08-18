@@ -29,7 +29,7 @@ def upgrade():
     sa.Column('marca_id', sa.Integer(), nullable=False),
     sa.Column('nome', sa.String(length=120), nullable=False),
     sa.Column('valor_fipe', sa.DECIMAL(precision=12, scale=2), nullable=False),
-    sa.ForeignKeyConstraint(['marca_id'], ['brands.id'], ondelete='RESTRICT'),
+    sa.ForeignKeyConstraint(['marca_id'], ['brands.id'], ondelete='CASCADE'),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('nome', 'marca_id', name='UQ_model_nome_brand')
     )
@@ -47,7 +47,7 @@ def upgrade():
     sa.CheckConstraint('"ano" BETWEEN 1950 AND 2100', name='CHK_car_ano'),
     sa.CheckConstraint('"combustivel" IN (\'GASOLINA\',\'ETANOL\',\'FLEX\',\'DIESEL\',\'HIBRIDO\',\'ELETRICO\')', name='CHK_car_combustivel'),
     sa.CheckConstraint('"num_portas" BETWEEN 2 AND 6', name='CHK_car_num_portas'),
-    sa.ForeignKeyConstraint(['modelo_id'], ['models.id'], ondelete='RESTRICT'),
+    sa.ForeignKeyConstraint(['modelo_id'], ['models.id'], ondelete='CASCADE'),
     sa.PrimaryKeyConstraint('id')
     )
     with op.batch_alter_table('cars', schema=None) as batch_op:

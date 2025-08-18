@@ -32,7 +32,7 @@ export class Car {
 
   @ManyToOne(() => Model, (m) => m.cars, {
     nullable: false,
-    onDelete: 'RESTRICT',
+    onDelete: 'CASCADE',
   })
   @JoinColumn({ name: 'modelo_id' })
   @Index('IDX_car_model')

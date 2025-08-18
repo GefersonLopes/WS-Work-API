@@ -19,11 +19,11 @@ class Car(db.Model):
 
     id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
     createdAt: Mapped[str] = mapped_column("timestamp_cadastro", DateTime(timezone=True), nullable=False, server_default=db.func.now())
-    model_id: Mapped[int] = mapped_column("modelo_id", Integer, ForeignKey("models.id", ondelete="RESTRICT"), nullable=False)
+    model_id: Mapped[int] = mapped_column("modelo_id", Integer, ForeignKey("models.id", ondelete="CASCADE"), nullable=False)
 
     ano: Mapped[int] = mapped_column(Integer, nullable=False)
     combustivel: Mapped[Fuel] = mapped_column(Enum(Fuel, name="cars_combustivel_enum"), nullable=False)
     num_portas: Mapped[int] = mapped_column(Integer, nullable=False)
     cor: Mapped[str] = mapped_column(String(40), nullable=False)
 
-    model = relationship("Model", back_populates="cars")
+    model = relationship("Model", back_populates="cars", cascade="all, delete", passive_deletes=True)

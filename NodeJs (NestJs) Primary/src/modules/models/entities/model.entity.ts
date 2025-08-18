@@ -22,7 +22,7 @@ export class Model {
   @Index()
   @ManyToOne(() => Brand, (b) => b.models, {
     nullable: false,
-    onDelete: 'RESTRICT',
+    onDelete: 'CASCADE',
   })
   @JoinColumn({ name: 'marca_id' })
   brand: Brand;

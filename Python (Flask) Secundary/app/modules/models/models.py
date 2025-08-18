@@ -10,9 +10,9 @@ class Model(db.Model):
     )
 
     id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
-    brand_id: Mapped[int] = mapped_column("marca_id", Integer, ForeignKey("brands.id", ondelete="RESTRICT"), nullable=False)
+    brand_id: Mapped[int] = mapped_column("marca_id", Integer, ForeignKey("brands.id", ondelete="CASCADE"), nullable=False)
     nome: Mapped[str] = mapped_column(String(120), nullable=False)
     fipeValue: Mapped[float] = mapped_column("valor_fipe", DECIMAL(12, 2), nullable=False)
 
-    brand = relationship("Brand", back_populates="models")
-    cars  = relationship("Car", back_populates="model", cascade="save-update, merge")
+    brand = relationship("Brand", back_populates="models", cascade="all, delete", passive_deletes=True)
+    cars  = relationship("Car", back_populates="model", cascade="all, delete", passive_deletes=True)

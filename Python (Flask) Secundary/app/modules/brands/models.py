@@ -9,4 +9,4 @@ class Brand(db.Model):
     id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
     name: Mapped[str] = mapped_column("nome_marca", String(120), nullable=False)
 
-    models = relationship("Model", back_populates="brand", cascade="save-update, merge")
+    models = relationship("Model", back_populates="brand", cascade="all, delete", passive_deletes=True)

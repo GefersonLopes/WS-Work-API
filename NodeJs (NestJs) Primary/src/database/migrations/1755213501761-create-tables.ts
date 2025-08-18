@@ -75,7 +75,7 @@ export class CreateTables1755213501761 implements MigrationInterface {
             columnNames: ['marca_id'],
             referencedTableName: 'brands',
             referencedColumnNames: ['id'],
-            onDelete: 'RESTRICT',
+            onDelete: 'CASCADE',
           }),
         ],
       }),
@@ -114,7 +114,7 @@ export class CreateTables1755213501761 implements MigrationInterface {
             columnNames: ['modelo_id'],
             referencedTableName: 'models',
             referencedColumnNames: ['id'],
-            onDelete: 'RESTRICT',
+            onDelete: 'CASCADE',
           }),
         ],
         indices: [
