@@ -2,8 +2,9 @@ import dataSource from '../../../ormconfig';
 import { Brand } from '../../modules/brands/entities/brand.entity';
 import { Model } from '../../modules/models/entities/model.entity';
 import { Car, Fuel } from '../../modules/cars/entities/car.entity';
+import { input } from './data.seed';
 
-type InputCar = {
+export type InputCar = {
   id: number;
   timestamp_cadastro: number;
   modelo_id: number;
@@ -15,49 +16,27 @@ type InputCar = {
   valor: string | number;
 };
 
-const input = {
-  cars: [
-    {
-      id: 1,
-      timestamp_cadastro: 1696539488,
-      modelo_id: 12,
-      ano: 2015,
-      combustivel: 'FLEX',
-      num_portas: 4,
-      cor: 'BEGE',
-      nome_modelo: 'ONIX PLUS',
-      valor: '50.000',
-    },
-    {
-      id: 2,
-      timestamp_cadastro: 1696531234,
-      modelo_id: 14,
-      ano: 2014,
-      combustivel: 'FLEX',
-      num_portas: 4,
-      cor: 'AZUL',
-      nome_modelo: 'JETTA',
-      valor: '49.000',
-    },
-    {
-      id: 3,
-      timestamp_cadastro: 16965354321,
-      modelo_id: 79,
-      ano: 1993,
-      combustivel: 'DIESEL',
-      num_portas: 4,
-      cor: 'AZUL',
-      nome_modelo: 'HILUX SW4',
-      valor: '47.500',
-    },
-  ] as InputCar[],
-};
-
 function guessBrandName(modelName: string): string {
   const n = modelName.toUpperCase();
-  if (n.includes('ONIX')) return 'Chevrolet';
-  if (n.includes('JETTA')) return 'Volkswagen';
-  if (n.includes('HILUX')) return 'Toyota';
+
+  if (/(SW4|HILUX|GR COROLLA|COROLLA)/.test(n)) return 'Toyota';
+
+  if (/(RS6|AUDI)/.test(n)) return 'Audi';
+
+  if (/(RANGE ROVER|DEFENDER)/.test(n)) return 'Land Rover';
+
+  if (/\bSEAL\b/.test(n)) return 'BYD';
+
+  if (/(911|MACAN|PANAMERA|CAYENNE)/.test(n)) return 'Porsche';
+
+  if (/(^|\s)1500\sREBEL/.test(n)) return 'RAM';
+
+  if (/(MUSTANG|RANGER RAPTOR)/.test(n)) return 'Ford';
+
+  if (/CIVIC/.test(n)) return 'Honda';
+
+  if (/(^|\s)I4\b|M2 COMPETITION|X6 M/.test(n)) return 'BMW';
+
   return 'Marca Desconhecida';
 }
 
@@ -72,7 +51,6 @@ function parseValor(v: string | number): number {
 function epochToDate(ts: number): Date {
   const n = Number(ts);
   const len = String(Math.trunc(Math.abs(n))).length;
-
   if (len >= 13) return new Date(n);
   if (len <= 10) return new Date(n * 1000);
   return new Date(n > 2_000_000_000 ? n : n * 1000);
@@ -93,6 +71,7 @@ async function run() {
     let brand =
       brandByName.get(brandName) ??
       (await brandRepo.findOne({ where: { name: brandName } }));
+
     if (!brand) {
       brand = brandRepo.create({ name: brandName });
       await brandRepo.save(brand);
@@ -111,7 +90,6 @@ async function run() {
           fipeValue: parseValor(c.valor),
           brand,
         });
-
         await modelRepo.save(model);
       }
 
