@@ -82,6 +82,7 @@ export class CarsService {
       num_portas: car.num_portas,
       cor: car.cor,
       nome_modelo: car.model.nome,
+      nome_marca: car.model.brand.name,
       valor: car.model.fipeValue,
     }));
 
