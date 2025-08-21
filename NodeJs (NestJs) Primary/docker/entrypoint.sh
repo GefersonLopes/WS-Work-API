@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/bin/sh
 set -e
 
 DB_HOST="${DB_HOST:-db}"
@@ -22,4 +22,4 @@ fi
 
 echo "Iniciando API..."
 export NODE_PATH=/app/dist
-node -e "require('module').Module._initPaths(); require('./dist/src/main.js');"
+exec node -e "require('module').Module._initPaths(); require('./dist/src/main.js');"
