@@ -92,3 +92,6 @@ cd WS-Work-API
 cd NodeJs\ \(NestJs\)\ Primary/
 docker compose up --build
 ```
+### 3. Abra o link:
+
+[Aplicação Back-End](http://localhost:3000) 
